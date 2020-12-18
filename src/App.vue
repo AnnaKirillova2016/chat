@@ -2,10 +2,23 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+    <router-view/>
+    <Calendar v-model="value"/>
   </div>
-  <router-view/>
 </template>
-
+<script>
+import Calendar from 'primevue/calendar'
+export default {
+  data () {
+    return {
+      value: null
+    }
+  },
+  components: {
+    Calendar
+  }
+}
+</script>
 <style lang="stylus">
 #app
   font-family Avenir, Helvetica, Arial, sans-serif
