@@ -4,9 +4,9 @@
     <div class="p-col-3"/>
     <div class="p-col" >
       <div class="p-row p-d-flex p-jc-sm-end">
-        <Button icon="pi pi-user" label="Профиль" class="p-button-help p-button-outlined p-mr-2" style="background: white"/>
-        <Button icon="pi pi-comments" label="Редактор комментариев" class="p-button-help p-button-outlined p-mr-2" style="background: white"/>
-        <Button icon="pi pi-sign-out" label="Выход" class="p-button-help p-button-outlined p-mr-2" style="background: white"/>
+        <Button icon="pi pi-user" label="Профиль" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
+        <Button icon="pi pi-comments" label="Редактор комментариев" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
+        <Button icon="pi pi-sign-out" label="Выход" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
       </div>
     </div>
   <!--<router-link to="/">Home</router-link> |
@@ -37,6 +37,7 @@ export default {
 
 <style lang="stylus">
   .bg
-    background url("https://image.shutterstock.com/image-vector/abstract-purple-pink-cold-streamer-600w-1662426379.jpg")
-    background-size:auto
+    /*background url("https://image.shutterstock.com/image-vector/abstract-purple-pink-cold-streamer-600w-1662426379.jpg")*/
+    /*background-size:auto*/
+    background #384683
 </style>

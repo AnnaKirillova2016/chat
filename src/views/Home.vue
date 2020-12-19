@@ -17,7 +17,7 @@
           </div>
         </template>
         <template #footer>
-          <Button icon="pi pi-pencil" label="Edit" />
+          <Button icon="pi pi-pencil" label="Edit" style="background: #384683"/>
 <!--          <Button icon="pi pi-sign-out" label="Exit" class="p-button-danger" style="margin-left: .5em" />-->
         </template>
       </Card>
