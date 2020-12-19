@@ -4,4 +4,20 @@ import router from './router'
 import store from './store'
 import PrimeVue from 'primevue/config'
 
-createApp(App).use(store).use(store).use(router).use(PrimeVue).mount('#app')
+import 'primevue/resources/themes/md-light-deeppurple/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
+
+const app = createApp(App)
+app.use(store)
+app.use(router)
+app.use(PrimeVue, {
+  locale: {
+    weak: 'Слабый',
+    medium: 'Средний',
+    strong: 'Сильный'
+  }
+})
+app.mount('#app')
+// createApp(App).use(store).use(store).use(router).use(PrimeVue).mount('#app')
