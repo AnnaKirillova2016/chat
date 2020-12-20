@@ -1,10 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/LoginPage.vue'
+import Error404 from '../views/error/error404.vue'
+import App from '@/App.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: '/',
+    component: App
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -20,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Авторизация',
     component: Login
+  },
+  {
+    path: '/404',
+    name: 'error 404',
+    component: Error404
   }
 ]
 

@@ -1,30 +1,35 @@
 <template>
-  <div>
-      <div class="p-fluid">
-        <div class="p-mt-2 p-formgroup-inline">
-          <div class="p-field">
-            <label for="username">Логин</label>
-            <InputText id="username" type="text" v-model="value"/>
-          </div>
-        </div>
-        <div class="p-mb-2 p-formgroup-inline">
-          <div class="p-field">
-            <label for="password">Пароль</label>
-            <Password id="password" type="password" v-model="value"/>
-          </div>
-        </div>
-        <div class="p-mb-2 p-formgroup-inline">
-          <div class="p-field-checkbox">
-            <Checkbox id="binary" v-model="checked" :binary="false" />
-            <label for="binary">Запомнить</label>
-          </div>
-          <a href="#" >Забыл пароль?</a>
+  <div class="p-grid">
+    <div class="p-col">
+      <div class="p-row">
+        <div class="p-field">
+          <label for="username">Логин</label>
+          <InputText id="username" type="text" v-model="username" class="loginField"/>
         </div>
       </div>
-    <div>
-
-      <Button class="p-button-outlined p-mr-2" >Войти</Button>
-      <Button class="p-button-outlined" >Регистрация</Button>
+      <div class="p-row">
+        <div class="p-field">
+          <label for="password">Пароль</label>
+          <Password id="password" type="password" v-model="password" class="loginField"/>
+        </div>
+      </div>
+      <div class="p-row">
+        <div class="p-grid">
+          <div class="p-col">
+            <div class="p-field-checkbox">
+              <Checkbox id="binary" v-model="checked" :binary="true" class="btnLogin"/>
+              <label for="binary">Запомнить</label>
+            </div>
+          </div>
+          <div class="p-col">
+            <a href="#" >Забыл пароль?</a>
+          </div>
+        </div>
+      </div>
+      <div class="p-row p-d-flex p-jc-sm-end">
+        <Button class="p-mr-2" @click="signIn" style="background: #384683; border-radius: 7px">Войти</Button>
+        <Button style="background: #384683; border-radius: 7px">Регистрация</Button>
+      </div>
     </div>
   </div>
 </template>
@@ -34,7 +39,7 @@ import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import Password from 'primevue/password'
 import Checkbox from 'primevue/checkbox'
-
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'login',
   components: {
@@ -42,13 +47,33 @@ export default {
     InputText,
     Password,
     Checkbox
-
+  },
+  data () {
+    return {
+      username: '',
+      password: '',
+      checked: false
+    }
+  },
+  computed: {
+    ...mapState(['profile'])
+  },
+  methods: {
+    ...mapActions(['login']),
+    signIn () {
+      this.login(this.username, this.password)
+      if (this.profile) {
+        this.$router.replace('/')
+      }
+    }
   }
 }
 </script>
 
 <style lang="stylus">
-/*button*/
-/*  color:red*/
-/*  background : aqua*/
+  .btnLogin
+    background #384683
+  .loginField
+    width 100%
+    color #384683
 </style>

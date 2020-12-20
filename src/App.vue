@@ -1,18 +1,28 @@
 <template>
-  <div >
-
-    <nav-menu/>
-
-    <homePage/>
+  <div>
+  <div v-if="profile === theProfile">
+      <nav-menu/>
+  </div>
+  <router-view/>
   </div>
 </template>
 <script>
-import homePage from '@/views/Home.vue'
 import navMenu from '@/components/navMenu'
+import { mapState } from 'vuex'
+
 export default {
   components: {
-    homePage,
     navMenu
+  },
+  computed: {
+    ...mapState(['profile', 'theProfile'])
+  },
+  beforeMount () {
+    if (this.profile !== this.theProfile) {
+      this.$router.replace('/login')
+    } else {
+      this.$router.replace('/home')
+    }
   }
 }
 </script>

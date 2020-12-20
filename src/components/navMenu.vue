@@ -4,9 +4,9 @@
     <div class="p-col-3"/>
     <div class="p-col" >
       <div class="p-row p-d-flex p-jc-sm-end">
-        <Button icon="pi pi-user" label="Профиль" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
-        <Button icon="pi pi-comments" label="Редактор комментариев" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
-        <Button icon="pi pi-sign-out" label="Выход" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683"/>
+        <Button icon="pi pi-user" label="Профиль" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
+        <Button :badge="newMessages" icon="pi pi-comments" label="Редактор комментариев" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
+        <Button @click="exit" icon="pi pi-sign-out" label="Выход" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
       </div>
     </div>
   <!--<router-link to="/">Home</router-link> |
@@ -19,18 +19,23 @@
 
 <script>
 import Button from 'primevue/button'
+import { mapActions } from 'vuex'
 export default {
   name: 'navMenu',
   data () {
     return {
-
+      newMessages: 15
     }
   },
   components: {
     Button
   },
   methods: {
-
+    ...mapActions(['logout']),
+    exit () {
+      this.logout()
+      this.$router.replace('/')
+    }
   }
 }
 </script>

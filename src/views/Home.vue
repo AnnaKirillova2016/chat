@@ -10,10 +10,10 @@
         </template>
         <template #content>
           <div class="p-d-flex p-flex-column">
-            <div class="p-mb-2">status: {{profile.status}}</div>
-            <div class="p-mb-2">age: {{profile.age}}</div>
-            <div class="p-mb-2">Country: {{profile.country}}</div>
-            <div class="p-mb-2">Company: {{profile.company}}</div>
+            <div class="p-mb-2">тип: {{profile.status}}</div>
+            <div class="p-mb-2">Возраст: {{profile.age}}</div>
+            <div class="p-mb-2">Страна: {{profile.country}}</div>
+            <div class="p-mb-2">Компания: {{profile.company}}</div>
           </div>
         </template>
         <template #footer>
@@ -26,13 +26,13 @@
       <div class="p-grid p-jc-center">
         <div class="p-col-9">
           <div class="p-row p-mb-3">
-            <div class="p-shadow-3">
+            <div class="p-shadow-3" style="background: white">
               <h2 class="p-my-3 p-text-center">Статистика за месяц</h2>
               <Chart type="pie" :data="chartData"/>
             </div>
           </div>
           <div class="p-row">
-            <div class="p-shadow-3">
+            <div class="p-shadow-3" style="background: white">
               <h2 class="p-my-3 p-text-center">Статистика за год</h2>
               <Chart type="line" :data="lineStylesData" />
             </div>
@@ -48,6 +48,7 @@
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
+import { mapState } from 'vuex'
 // import login from '@/components/login.vue'
 export default {
   components: {
@@ -57,15 +58,6 @@ export default {
   },
   data () {
     return {
-      profile: {
-        firstName: 'Santa',
-        lastName: 'Claus',
-        status: 'moderator',
-        age: '997',
-        country: 'Laplandy',
-        company: 'New Year Inc.',
-        image: 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
-      },
       chartData: {
         labels: ['Одобрено', 'Новых', 'Отказано'],
         datasets: [
@@ -73,7 +65,7 @@ export default {
             data: [300, 50, 100],
             backgroundColor: [
               '#42A5F5',
-              '#efff39',
+              '#ddec35',
               '#9868bb'
             ],
             hoverBackgroundColor: [
@@ -103,10 +95,14 @@ export default {
         ]
       }
     }
+  },
+  computed: {
+    ...mapState(['profile'])
   }
 }
 </script>
 <style lang="stylus">
+
   /*body
     background-image url(./src/assets/bg.jpg)*/
 </style>
