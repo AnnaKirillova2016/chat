@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/LoginPage.vue'
 import Error404 from '../views/error/error404.vue'
 import App from '@/App.vue'
+import RegPage from '../views/RegPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Авторизация',
     component: Login
+  },
+  {
+    path: '/registration',
+    name: 'Регистрация',
+    component: RegPage
   },
   {
     path: '/404',

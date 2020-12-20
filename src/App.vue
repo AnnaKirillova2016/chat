@@ -33,6 +33,10 @@ export default {
   -moz-osx-font-smoothing grayscale
   /*text-align center*/
   color #2c3e50
+  .divBg
+    background-image url(./assets/bg.jpg)
+    background-size 100%
+    height 97vh
   /*margin-top 60px*/
  /* .bg
     background url("./assets/bg.jpg")

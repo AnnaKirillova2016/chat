@@ -1,5 +1,5 @@
 <template>
-  <div class="p-d-flex p-jc-center" >
+  <div class="p-d-flex p-jc-center divBg" >
     <div class="p-grid p-align-center">
       <div class="p-col">
     <div class="p-row p-text-center">
@@ -24,7 +24,5 @@ export default {
 </script>
 
 <style lang="stylus">
-  body
-    background-image url(../assets/bg.jpg)
-    background-size 100%
+
 </style>

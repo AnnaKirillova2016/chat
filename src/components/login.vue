@@ -28,7 +28,7 @@
       </div>
       <div class="p-row p-d-flex p-jc-sm-end">
         <Button class="p-mr-2" @click="signIn" style="background: #384683; border-radius: 7px">Войти</Button>
-        <Button style="background: #384683; border-radius: 7px">Регистрация</Button>
+        <Button style="background: #384683; border-radius: 7px" @Click="reg">Регистрация</Button>
       </div>
     </div>
   </div>
@@ -65,6 +65,9 @@ export default {
       if (this.profile) {
         this.$router.replace('/')
       }
+    },
+    reg () {
+      this.$router.replace('/registration')
     }
   }
 }
