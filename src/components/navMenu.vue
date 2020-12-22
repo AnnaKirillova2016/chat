@@ -1,40 +1,78 @@
 <template>
-<!--<div class="bg">-->
-  <div class="p-grid bg">
-    <div class="p-col-3"/>
-    <div class="p-col" >
-      <div class="p-row p-d-flex p-jc-sm-end">
-        <Button icon="pi pi-user" label="Профиль" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
-        <Button :badge="newMessages" icon="pi pi-comments" label="Редактор комментариев" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
-        <Button @click="exit" icon="pi pi-sign-out" label="Выход" class="p-button-help p-button-outlined p-mr-2" style="background: white; color: #384683; border-radius: 7px"/>
-      </div>
+    <div style="padding: 0rem">
+      <Card style="height: 100%; background: rgba(146,135,187,0.84); border-radius: 0px">
+        <template #content style="height: 70%">
+          <div class="p-d-flex p-flex-column">
+            <div class="p-grid">
+              <div class="p-col-3 p-d-flex p-as-start">
+                <img style="width: 100%; border-radius: 50%" alt="user header" :src="profile.image">
+              </div>
+              <div class="p-col" style="color: white">
+                <div class="p-mb-2 fontPersent">{{profile.lastName}} {{profile.firstName}}</div>
+                <div class="p-mb-2 fontPersent">email: {{profile.email}}</div>
+                <div class="p-mb-2 fontPersent">Компания: {{profile.company}}</div>
+              </div>
+            </div>
+          </div>
+          <PanelMenu class="p-mt-6" :model="sMenu" style="height: 70px; width: 100%"/>
+        </template>
+      </Card>
     </div>
-  <!--<router-link to="/">Home</router-link> |
-  <router-link to="/about">About</router-link> |
-  <router-link to="/login">Авторизация</router-link>
-  <router-view/>-->
-  </div>
-<!--</div>-->
 </template>
 
 <script>
-import Button from 'primevue/button'
-import { mapActions } from 'vuex'
+import Card from 'primevue/card'
+import { mapActions, mapState } from 'vuex'
+import PanelMenu from 'primevue/panelmenu'
 export default {
   name: 'navMenu',
   data () {
     return {
-      newMessages: 15
+      sMenu: [
+        {
+          label: 'Статистика',
+          icon: 'pi pi-chart-bar',
+          command: () => this.statistic()
+        },
+        {
+          label: 'Комментарии',
+          icon: 'pi pi-comments',
+          command: () => this.comments()
+        },
+        {
+          label: 'Настройки',
+          icon: 'pi pi-id-card',
+          command: () => this.settings()
+        },
+        {
+          label: 'Выход',
+          icon: 'pi pi-sign-out',
+          command: () => this.exit()
+        }
+      ]
     }
   },
   components: {
-    Button
+    Card,
+    PanelMenu
+  },
+  computed: {
+    ...mapState(['profile'])
   },
   methods: {
     ...mapActions(['logout']),
     exit () {
       this.logout()
       this.$router.replace('/')
+    },
+    statistic () {
+      this.$router.replace('/Satistic')
+    },
+    comments () {
+      this.$router.replace('/workspace')
+    },
+    settings () {
+      this.$router.replace('/profile')
     }
   }
 }

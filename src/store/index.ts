@@ -4,6 +4,7 @@ export default createStore({
   state: {
     profile: {},
     theProfile: {
+      email: 'email@example.com',
       firstName: 'Santa',
       lastName: 'Claus',
       status: 'moderator',

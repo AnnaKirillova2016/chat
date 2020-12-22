@@ -4,6 +4,8 @@ import Login from '../views/LoginPage.vue'
 import Error404 from '../views/error/error404.vue'
 import App from '@/App.vue'
 import RegPage from '../views/RegPage.vue'
+import ProfilePage from '../views/ProfilePage.vue'
+import WorkSpace from '../views/WorkSpace.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,8 +14,8 @@ const routes: Array<RouteRecordRaw> = [
     component: App
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: '/Satistic',
+    name: 'Satistic',
     component: Home
   },
   {
@@ -33,6 +35,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/registration',
     name: 'Регистрация',
     component: RegPage
+  },
+  {
+    path: '/workspace',
+    name: 'Редактор сообщений',
+    component: WorkSpace
+  },
+  {
+    path: '/profile',
+    name: 'Настройки',
+    component: ProfilePage
   },
   {
     path: '/404',

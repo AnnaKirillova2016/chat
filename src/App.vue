@@ -1,9 +1,11 @@
 <template>
-  <div>
-  <div v-if="profile === theProfile">
+  <div class="p-grid p-d-flex">
+  <div class="p-col-3 p-d-flex" style="padding: 0rem; height: 100vh" v-if="profile === theProfile">
       <nav-menu/>
   </div>
-  <router-view/>
+    <div class="p-col">
+      <router-view/>
+    </div>
   </div>
 </template>
 <script>
@@ -21,7 +23,7 @@ export default {
     if (this.profile !== this.theProfile) {
       this.$router.replace('/login')
     } else {
-      this.$router.replace('/home')
+      this.$router.replace('/Satistic')
     }
   }
 }
