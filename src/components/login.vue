@@ -27,8 +27,8 @@
         </div>
       </div>
       <div class="p-row p-d-flex p-jc-sm-end">
-        <Button class="p-mr-2" @click="signIn" style="background: #AC8AC6; border-radius: 7px">Войти</Button>
-        <Button style="background: #384683; border-radius: 7px" @Click="reg">Регистрация</Button>
+        <Button class="p-mr-2" @click="signIn" style="border-radius: 7px">Войти</Button>
+        <Button style="border-radius: 7px" @Click="reg">Регистрация</Button>
       </div>
     </div>
   </div>

@@ -19,8 +19,8 @@
         <label for="lastName">Фамилия</label>
         </span>
         <div class="p-row p-flex-row p-jc-end">
-          <Button label="Зарегистрироваться" class="p-mr-2" style="background: #384683"/>
-          <Button @Click="notReg" label="Отмена" style="background: #384683"/>
+          <Button @click="reg" label="Зарегистрироваться" class="p-mr-2" style="border-radius: 7px"/>
+          <Button @Click="notReg" label="Отмена" style="border-radius: 7px"/>
         </div>
       </div>
     </div>
@@ -31,6 +31,9 @@
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import Password from 'primevue/password'
+import { mapActions } from 'vuex'
+/* import { defineComponent } from 'vue'
+import { useToast } from 'primevue/usetoast' */
 export default {
   name: 'registration',
   components: {
@@ -50,8 +53,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['regUser']),
     notReg () {
       this.$router.replace('/')
+    },
+    reg () {
+      this.regUser(this.newUser)
+      /* const toast = useToast()
+      toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', life: 3000 }) */
+      this.notReg()
     }
   }
 }

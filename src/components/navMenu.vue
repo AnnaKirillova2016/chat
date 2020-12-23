@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <PanelMenu class="p-mt-6" :model="sMenu" style="height: 70px; width: 100%"/>
+          <PanelMenu :model="sMenu" style="height: 70px; width: 100%"/>
         </template>
       </Card>
     </div>
