@@ -1,28 +1,10 @@
 import { createStore, mapMutations, mapState } from 'vuex'
 import Axios from 'axios'
 
-/* interface User {
-  id: number,
-  first_name: string,
-  last_name: string
-}
-interface Page {
-  id: number,
-  url: string
-}
-interface Comment {
-  id: number,
-  page: Page,
-  user: User,
-  timestamp: string,
-  text: string,
-  status: string,
-  inportant: boolean
-} */
-
 export default createStore({
 
   state: {
+    host: 'http://localhost:9000',
     profile: null,
     theProfile: {
       email: 'email@example.com',
@@ -34,7 +16,9 @@ export default createStore({
       company: 'New Year Inc.',
       image: 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
     },
-    comments: []
+    newComments: [],
+    acceptedComments: [],
+    blockComments: []
 
   },
   mutations: {
@@ -42,6 +26,7 @@ export default createStore({
       state.profile = state.theProfile
     },
     logout (state) {
+      state.theProfile = state.profile
       state.profile = null
     }
 
@@ -63,35 +48,50 @@ export default createStore({
     updateProfile ({ state, commit }) {
       console.log('updated')
     },
-    async acceptMsg (commId) {
+    async acceptMsg ({ state, commit }, commId) {
       await Axios
-        .post('http://localhost:9000/comments/publish', {
-          id: commId
+        .get(state.host + '/comments/publish/?id=' + commId)
+    },
+    async block ({ state, commit }, commId) {
+      console.log(commId)
+      await Axios
+        .get(state.host + '/comments/delete/?id=' + commId)
+        .then(response => {
+          console.log(response.data)
         })
     },
-    async block (commId) {
-      await Axios
-        .delete('http://localhost:9000/comments/delete/?id=' + commId)
-    },
-    del (commId) {
+    del ({ commit }, commId) {
       console.log(commId)
     },
-    regUser (newUser) {
+    regUser ({ commit }, newUser) {
       console.log(newUser)
     },
     async msgByType ({ state }, type) {
       await Axios
-        .get('http://localhost:9000/comments?companyid=0&status=' + type)
+        .get(state.host + '/comments?companyid=0&status=' + type)
         .then(response => {
           state.comments = response.data.comments
           // console.log(response)
         })
+      this.getAllMsg()
     },
     async getAllMsg ({ state }) {
       await Axios
-        .get('http://localhost:9000/comments?companyid=0&status=unmoderated')
+        .get(state.host + '/comments?companyid=0&status=unmoderated')
         .then(response => {
-          state.comments = response.data.comments
+          state.newComments = response.data.comments
+          // console.log(response)
+        })
+      await Axios
+        .get(state.host + '/comments?companyid=0&status=published')
+        .then(response => {
+          state.acceptedComments = response.data.comments
+          // console.log(response)
+        })
+      await Axios
+        .get(state.host + '/comments?companyid=0&status=deleted')
+        .then(response => {
+          state.blockComments = response.data.comments
           // console.log(response)
         })
     }

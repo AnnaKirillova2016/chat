@@ -55,21 +55,25 @@ export default {
         {
           label: 'Удалить',
           icon: 'pi pi-trash',
-          command: () => this.delMsg()
+          command: () => this.delMsg(),
+          visible: false
         }
       ]
     }
   },
   methods: {
-    ...mapActions(['acceptMsg', 'del', 'block']),
+    ...mapActions(['acceptMsg', 'del', 'block', 'getAllMsg']),
     acceptComm () {
       this.acceptMsg(this.comment.id)
+      this.getAllMsg()
     },
     delMsg () {
-      this.block(this.comment.id)
+      this.del(this.comment.id)
+      this.getAllMsg()
     },
     blockMsg () {
-      this.del(this.comment.id)
+      this.block(this.comment.id)
+      this.getAllMsg()
     }
   }
 }
