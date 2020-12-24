@@ -7,7 +7,7 @@
       <div class="p-grid p-d-flex p-jc-center p-mt-3" style="width: 100%">
 <!--        <div class="p-col p-d-inline-flex">-->
         <Comment
-          v-for="comm in list"
+          v-for="comm in comments"
           :key="comm.id"
           :comment="comm"
           class="p-d-flex p-d-flex p-jc-center p-mb-3" style="width: 100%" />
@@ -45,28 +45,20 @@ export default {
           icon: 'pi pi-ban',
           command: () => { this.getByType('deleted') }
         }
-      ],
-      list: []
+      ]
     }
   },
   computed: {
-    ...mapState(['newComments', 'acceptedComments', 'blockComments'])
+    ...mapState(['comments', 'currList'])
   },
   methods: {
     ...mapActions(['msgByType', 'getAllMsg']),
     getByType (type) {
-      this.getAllMsg()
-      if (type === 'unmoderated') {
-        this.list = this.newComments
-      } else if (type === 'published') {
-        this.list = this.acceptedComments
-      } else if (type === 'deleted') {
-        this.list = this.blockComments
-      }
+      this.msgByType(type)
     }
   },
   beforeMount () {
-    this.getAllMsg()
+    this.getByType(this.currlist)
   }
 }
 </script>
