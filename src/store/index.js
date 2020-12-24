@@ -1,8 +1,29 @@
 import { createStore, mapMutations, mapState } from 'vuex'
+import Axios from 'axios'
+
+/* interface User {
+  id: number,
+  first_name: string,
+  last_name: string
+}
+interface Page {
+  id: number,
+  url: string
+}
+interface Comment {
+  id: number,
+  page: Page,
+  user: User,
+  timestamp: string,
+  text: string,
+  status: string,
+  inportant: boolean
+} */
 
 export default createStore({
+
   state: {
-    profile: {},
+    profile: null,
     theProfile: {
       email: 'email@example.com',
       firstName: 'Santa',
@@ -13,36 +34,8 @@ export default createStore({
       company: 'New Year Inc.',
       image: 'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
     },
-    comments: [
-      {
-        user: 'Killer666',
-        timestamp: '12:23 02.01.2022',
-        text: 'тест1',
-        id: '1',
-        isNew: true
-      },
-      {
-        user: 'Nagibator9000',
-        timestamp: '12:23 04.01.2022',
-        text: 'text in english',
-        id: '2',
-        isNew: false
-      },
-      {
-        user: 'Кондратий Колосяд',
-        timestamp: '12:47 02.01.2022',
-        text: 'дайте два',
-        id: '3',
-        isNew: false
-      },
-      {
-        user: 'Федот',
-        timestamp: '12:23 19.01.2022',
-        text: 'Ищу с перламутровыми пугавицами',
-        id: '4',
-        isNew: true
-      }
-    ]
+    comments: []
+
   },
   mutations: {
     mutateProfile (state) {
@@ -69,17 +62,29 @@ export default createStore({
     updateProfile ({ state, commit }) {
       console.log('updated')
     },
-    acceptMsg (commId) {
-      console.log(commId)
+    async acceptMsg (commId) {
+      await Axios
+        .post('http://localhost:9000/comments/publish', {
+          id: commId
+        })
     },
-    block (commId) {
-      console.log(commId)
+    async block (commId) {
+      await Axios
+        .delete('http://localhost:9000/comments/delete/?id=' + commId)
     },
     del (commId) {
       console.log(commId)
     },
     regUser (newUser) {
       console.log(newUser)
+    },
+    async msgByType ({ state }, type) {
+      await Axios
+        .get('http://localhost:9000/comments?companyid=0&status=' + type)
+        .then(response => {
+          state.comments = response
+          // console.log(response)
+        })
     }
   },
   modules: {

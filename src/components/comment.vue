@@ -1,25 +1,10 @@
 <template>
   <div class="p-row p-d-flex" style="width: 100%">
   <Panel style="width: 90%">
-   <!-- <template #icons>
-      <button class="p-panel-header-icon p-link  p-button-success"
-              @click="acceptBtn" style="color: green">
-        <span class="pi pi-check"></span>
-      </button>
-      <button class="p-panel-header-icon p-link  p-button-danger"
-              @click="declineBtn" style="color: red;%">
-        <span class="pi pi-ban"></span>
-      </button>
-       &lt;!&ndash; <button class="p-panel-header-icon p-link"
-                @click="toggle">
-          <span class="pi pi-cog"></span>
-        </button>
-        <Menu ref="commMenu" :model="menuItems" :popup="true" />&ndash;&gt;
-    </template>-->
     <template #header>
       <div class="p-grid p-d-flex" style="width: 100%">
-         <div class="p-col p-jc-start p-ml-3" style="font-size: small">
-          {{comment.user}}
+         <div class="p-col p-jc-start" style="font-size: small">
+          {{comment.user.first_name}} {{comment.user.last_name}}
          </div>
          <div class="p-col p-text-right">
           {{comment.timestamp}}
