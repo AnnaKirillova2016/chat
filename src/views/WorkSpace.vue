@@ -52,10 +52,13 @@ export default {
     ...mapState(['comments'])
   },
   methods: {
-    ...mapActions(['msgByType']),
+    ...mapActions(['msgByType', 'getAllMsg']),
     getByType (type) {
       this.msgByType(type)
     }
+  },
+  beforeMount () {
+    this.getAllMsg()
   }
 }
 </script>

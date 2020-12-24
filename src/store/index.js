@@ -42,12 +42,13 @@ export default createStore({
       state.profile = state.theProfile
     },
     logout (state) {
-      state.profile = {}
+      state.profile = null
     }
+
   },
   actions: {
-    login ({ state, commit }) {
-      if (state.profile !== state.theProfile) {
+    login ({ state, commit }, data) {
+      if (data.login === 'test' & data.password === 'testtest') {
         commit('mutateProfile')
       } else {
         commit('logout')
@@ -82,7 +83,15 @@ export default createStore({
       await Axios
         .get('http://localhost:9000/comments?companyid=0&status=' + type)
         .then(response => {
-          state.comments = response
+          state.comments = response.data.comments
+          // console.log(response)
+        })
+    },
+    async getAllMsg ({ state }) {
+      await Axios
+        .get('http://localhost:9000/pagecomments/?companyid=0&url=/test')
+        .then(response => {
+          state.comments = response.data.comments
           // console.log(response)
         })
     }

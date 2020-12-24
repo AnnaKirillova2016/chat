@@ -4,13 +4,13 @@
       <div class="p-row">
         <div class="p-field">
           <label for="username">Логин</label>
-          <InputText id="username" type="text" v-model="username" class="loginField"/>
+          <InputText id="username" type="text" v-model="user.login" class="loginField"/>
         </div>
       </div>
       <div class="p-row">
         <div class="p-field">
           <label for="password">Пароль</label>
-          <Password id="password" type="password" v-model="password" class="loginField"/>
+          <Password id="password" type="password" v-model="user.password" class="loginField"/>
         </div>
       </div>
       <div class="p-row">
@@ -50,8 +50,10 @@ export default {
   },
   data () {
     return {
-      username: '',
-      password: '',
+      user: {
+        login: '',
+        password: ''
+      },
       checked: false
     }
   },
@@ -61,7 +63,7 @@ export default {
   methods: {
     ...mapActions(['login']),
     signIn () {
-      this.login(this.username, this.password)
+      this.login(this.user)
       if (this.profile) {
         this.$router.replace('/')
       }
