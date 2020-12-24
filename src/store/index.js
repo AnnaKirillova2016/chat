@@ -89,7 +89,7 @@ export default createStore({
     },
     async getAllMsg ({ state }) {
       await Axios
-        .get('http://localhost:9000/pagecomments/?companyid=0&url=/test')
+        .get('http://localhost:9000/comments?companyid=0&status=unmoderated')
         .then(response => {
           state.comments = response.data.comments
           // console.log(response)
